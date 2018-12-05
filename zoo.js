@@ -6,7 +6,7 @@ function run(){
     var bee = new Bee("Stinger");
     var bot = new Zookeeper("Zoebot");
 
-    bot.feedAnimals([tiger, bear, uni, gif, bee], )
+    bot.feedAnimals([tiger, bear, uni, gif, bee], "animals");
 }
 class Animal {
     constructor(name, favoriteFood){
@@ -87,7 +87,7 @@ class Zookeeper {
     feedAnimals (animals, food) {
         console.log(this.name + " is feeding " + food + " to " + animals.length + " animals");
 
-        for(var i = 0; i < 0; i++){
+        for(var i = 0; i < animals.length; i++){
             animals[i].eat(food);
         }
     }
@@ -133,5 +133,3 @@ class Zookeeper {
 //
 //     (food === favoriteFood) ? console.log("YUM!!! " + name + " wants more " + food) : sleep(name);
 // }
-
-
