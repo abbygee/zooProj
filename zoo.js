@@ -1,27 +1,17 @@
-// function sleep(name){
-//     console.log(name + " sleeps for 8 hours");
-// }
-//
-// function eat(name, food){
-//     console.log(name + " eats " + food);
-//
-//     (food === favoriteFood) ? console.log("YUM!!! " + name + " wants more " + food) : sleep(name);
-// }
-
 function run(){
-    var tigger = new Tiger("Tigger");
-    tigger.eat("meat");
-    tigger.eat("kibble");
-    var pooh = new Bear("Pooh");
-    pooh.eat("fish");
-    pooh.eat("meat");
+    var tiger = new Tiger("Tigger");
+    var bear = new Bear("Pooh");
+    var uni = new Unicorn("Rarity");
+    var gif = new Giraffe("Gemma");
+    var bee = new Bee("Stinger");
+    var bot = new Zookeeper("Zoebot");
+
+    bot.feedAnimals([tiger, bear, uni, gif, bee], )
 }
-
-class Tiger {
-
-    constructor(name) {
+class Animal {
+    constructor(name, favoriteFood){
         this.name = name;
-        this.favoriteFood = "meat";
+        this.favoriteFood = favoriteFood;
     }
 
     sleep() {
@@ -32,54 +22,116 @@ class Tiger {
     eat(food) {
         console.log(this.name + " eats " + food);
 
-        (food === this.favoriteFood) ? console.log("YUM!!! " + this.name + " wants more " + food) : sleep(this.name);
+        (food === this.favoriteFood) ? console.log("YUM!!! " + this.name + " wants more " + food) : this.sleep();
+    }
+}
+
+class Tiger extends Animal{
+
+    constructor(name) {
+        super(name, "meat");
     }
 
 }
 
-class Bear {
+class Bear extends Animal{
     constructor(name) {
-        this.name = name;
-        this.favoriteFood = "fish";
+        super(name, "fish");
     }
 
     sleep() {
         console.log(this.name + " hibernates for 4 months");
 
     }
+}
 
-    eat(food) {
-        console.log(this.name + " eats " + food);
+class Unicorn extends Animal{
+    constructor(name){
+        super(name, "marshmallows")
+    }
 
-        (food === this.favoriteFood) ? console.log("YUM!!! " + this.name + " wants more " + food) : sleep(this.name);
+    sleep(){
+        console.log(this.name + " sleeps in a cloud");
     }
 }
 
-// class Polygon {
+class Giraffe extends Animal{
+    constructor(name){
+        super(name, "leaves");
+    }
+
+    eat(food){
+        (food === this.favoriteFood) ? super.eat("leaves") : console.log("YUCK!!! " + this.name + " will not eat " + food);
+    }
+}
+
+class Bee extends Animal{
+    constructor(name){
+        super(name, "pollen")
+    }
+
+    sleep(){
+        console.log(this.name + " never sleeps");
+    }
+
+    eat(food){
+        (food === this.favoriteFood) ? super.eat("pollen") : console.log("YUCK!!! " + this.name + " will not eat " + food);
+    }
+}
+
+class Zookeeper {
+    constructor(name){
+        this.name = name;
+    }
+
+    feedAnimals (animals, food) {
+        console.log(this.name + " is feeding " + food + " to " + animals.length + " animals");
+
+        for(var i = 0; i < 0; i++){
+            animals[i].eat(food);
+        }
+    }
+}
+
+// class Shape {
 //
-//     constructor(height, width) {
-//         this.name = 'Polygon';
-//         this.height = height;
-//         this.width = width;
+//     constructor(name) {
+//         this.name = name;
+//         this.special = true;
 //     }
 //
-//     //method #1
 //     sayName() {
 //         console.log('Hi, I am a ', this.name + '.');
 //     }
 //
-//     //method #2
+//     sayHistory() {
+//         console.log("Shapes have a wonderful history.");
+//     }
+// }
+//
+// class Polygon extends Shape {
+//
+//     constructor(height, width) {
+//         super('Polygon');
+//         this.height = height;
+//         this.width = width;
+//     }
+//
 //     sayHistory() {
 //         console.log('"Polygon" is derived from the Greek polus (many) ' +
 //             'and gonia (angle).');
 //     }
 //
 // }
+
+//function sleep(name){
+//     console.log(name + " sleeps for 8 hours");
+// }
 //
-// var p1 = new Polygon(20, 40);
-// var p2 = new Polygon(100, 200);
+// function eat(name, food){
+//     console.log(name + " eats " + food);
 //
-// p1.sayName();
-// p2.sayHistory();
+//     (food === favoriteFood) ? console.log("YUM!!! " + name + " wants more " + food) : sleep(name);
+// }
 
 
