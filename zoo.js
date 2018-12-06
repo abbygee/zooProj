@@ -1,17 +1,22 @@
+var animalPopulation = 0;
+
 function run(){
     var tiger = new Tiger("Tigger");
     var bear = new Bear("Pooh");
     var uni = new Unicorn("Rarity");
     var gif = new Giraffe("Gemma");
-    var bee = new Bee("Stinger");
     var bot = new Zookeeper("Zoebot");
 
-    bot.feedAnimals([tiger, bear, uni, gif, bee], "animals");
+    bot.feedAnimals([tiger, bear, uni, gif], "sushi");
+
+    console.log(Animal.getPopulation());
 }
+
 class Animal {
     constructor(name, favoriteFood){
         this.name = name;
         this.favoriteFood = favoriteFood;
+        animalPopulation++;
     }
 
     sleep() {
@@ -23,6 +28,10 @@ class Animal {
         console.log(this.name + " eats " + food);
 
         (food === this.favoriteFood) ? console.log("YUM!!! " + this.name + " wants more " + food) : this.sleep();
+    }
+
+    static getPopulation() {
+        return animalPopulation;
     }
 }
 
@@ -85,7 +94,7 @@ class Zookeeper {
     }
 
     feedAnimals (animals, food) {
-        console.log(this.name + " is feeding " + food + " to " + animals.length + " animals");
+        console.log(this.name + " is feeding " + food + " to " + animals.length + " of " + animalPopulation + " total animals");
 
         for(var i = 0; i < animals.length; i++){
             animals[i].eat(food);
